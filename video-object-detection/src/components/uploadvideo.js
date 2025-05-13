@@ -3,6 +3,7 @@ import * as cocoSsd from "@tensorflow-models/coco-ssd";
 import "@tensorflow/tfjs";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./UploadVideo.css";
 
 const UploadVideo = () => {
   const [video, setVideo] = useState(null);
@@ -96,55 +97,68 @@ const UploadVideo = () => {
   };
 
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h2>Upload and Detect Objects in Video</h2>
+  <div className="video-upload-page">  
+  <h2 className="upvideo-title">Object Detection Panel</h2>
 
-      <input
-        type="text"
-        placeholder="Candidate Name"
-        value={candidateName}
-        onChange={(e) => setCandidateName(e.target.value)}
-      />
-      <br /><br />
-      <input
-        type="text"
-        placeholder="Candidate ID"
-        value={candidateId}
-        onChange={(e) => setCandidateId(e.target.value)}
-      />
-      <br /><br />
-      <input type="file" accept="video/*" onChange={handleVideoUpload} />
-      <br /><br />
+  <div className="upvideo-body">
+    
+    <input
+      type="text"
+      placeholder="Candidate Name"
+      value={candidateName}
+      onChange={(e) => setCandidateName(e.target.value)}
+      className="upvideo-input"
+    />
+    <br />
+    <input
+      type="text"
+      placeholder="Candidate ID"
+      value={candidateId}
+      onChange={(e) => setCandidateId(e.target.value)}
+      className="upvideo-input"
+    />
+    <br />
+    <input
+      type="file"
+      accept="video/*"
+      onChange={handleVideoUpload}
+      className="upvideo-input"
+    />
+    <br />
 
-      {video && (
-        <div style={{ position: "relative", display: "inline-block" }}>
-          <video
-            ref={videoRef}
-            src={video}
-            width="640"
-            height="480"
-            style={{ display: "block" }}
-            onLoadedData={loadModel}
-          />
-          <canvas
-            ref={canvasRef}
-            width="640"
-            height="480"
-            style={{ position: "absolute", top: 0, left: 0 }}
-          />
-        </div>
-      )}
+    {video && (
+      <div className="upvideo-video-container">
+        <video
+          ref={videoRef}
+          src={video}
+          width="640"
+          height="480"
+          style={{ display: "block" }}
+          onLoadedData={loadModel}
+        />
+        <canvas
+          ref={canvasRef}
+          width="640"
+          height="25"
+          className="upvideo-canvas"
+        />
+      </div>
+    )}
 
-      {video && (
-        <div style={{ marginTop: "20px" }}>
-          <button onClick={startDetection} style={{ marginRight: "20px" }}>
-            START
-          </button>
-          <button onClick={handleEnd}>END</button>
-        </div>
-      )}
-    </div>
-  );
+    {video && (
+      <div className="upvideo-controls">
+        <button className="upvideo-button" onClick={startDetection}>
+          START
+        </button>
+        <button className="upvideo-button" onClick={handleEnd}>
+          END
+        </button>
+      </div>
+    )}
+  </div>
+  </div>
+);
+
 };
 
 export default UploadVideo;

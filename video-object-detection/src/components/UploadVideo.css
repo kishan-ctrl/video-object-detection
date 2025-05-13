@@ -1,0 +1,268 @@
+/* Driving School Theme - Premium Styling */
+:root {
+  --road-blue: #1a73e8;
+  --safety-yellow: #fbbc04;
+  --white-line: #ffffff;
+  --asphalt-dark: #1a1c20;
+  --signal-green: #34a853;
+  --signal-red: #ea4335;
+  --transparent-light: rgba(255, 255, 255, 0.92);
+  --transparent-dark: rgba(0, 0, 0, 0.7);
+
+}
+
+/* Immersive Road Background */
+.video-upload-page {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: 
+    linear-gradient(rgba(26, 28, 32, 0.9), rgba(26, 28, 32, 0.95)),
+    url('https://images.unsplash.com/photo-1483721310020-03333e577078?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Animated Road Lines */
+.video-upload-page ::before  {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 50px,
+    var(--white-line) 50px,
+    var(--white-line) 52px
+  );
+  animation: roadMove 8s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.15;
+}
+
+/* Premium Glass Card Design */
+.upvideo-body {
+  width: 90%;
+  max-width: 650px;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.36),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  animation: cardFloat 6s ease-in-out infinite alternate;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.upvideo-body::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    rgba(251, 188, 4, 0.15) 0%,
+    transparent 70%
+  );
+  animation: lightPulse 8s infinite alternate;
+  z-index: -1;
+}
+
+
+.upvideo-title {
+  color: var(--white-line);
+  text-align: center;
+  margin: 0; 
+  padding-top: 20px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: absolute; 
+  top: 35px; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  letter-spacing: 1px;
+  width: 100%; 
+}
+
+.upvideo-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--road-blue), var(--safety-yellow));
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(26, 115, 232, 0.4);
+}
+
+/* Premium Input Fields */
+.upvideo-input {
+  width: 55%;
+  padding: 14px 20px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.upvideo-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.upvideo-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 0 0 3px rgba(26, 115, 232, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+}
+
+.upvideo-input:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Video Container with Neon Border */
+.upvideo-video-container {
+  position: relative;
+  margin: 2.5rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 2px solid transparent;
+  background: linear-gradient(var(--asphalt-dark), var(--asphalt-dark)) padding-box,
+              linear-gradient(135deg, var(--road-blue), var(--safety-yellow)) border-box;
+}
+
+.upvideo-video-container:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Premium Buttons with Traffic Light Effect */
+.upvideo-controls {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 2rem;
+}
+
+.upvideo-button {
+  padding: 14px 35px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.upvideo-button:first-child {
+  background: linear-gradient(135deg, var(--signal-green), #2d9b5c);
+  color: white;
+}
+
+.upvideo-button:last-child {
+  background: linear-gradient(135deg, var(--signal-red), #d33434);
+  color: white;
+}
+
+.upvideo-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.upvideo-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+.upvideo-button:hover::before {
+  opacity: 1;
+}
+
+.upvideo-button:active {
+  transform: translateY(2px);
+}
+
+/* Animations */
+@keyframes roadMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-52px); }
+}
+
+@keyframes cardFloat {
+  0% { transform: translateY(0px) rotateX(0.5deg); }
+  100% { transform: translateY(-15px) rotateX(-0.5deg); }
+}
+
+@keyframes lightPulse {
+  0% { transform: scale(1); opacity: 0.15; }
+  50% { transform: scale(1.1); opacity: 0.2; }
+  100% { transform: scale(1); opacity: 0.15; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .upvideo-body {
+    padding: 1.8rem;
+    width: 85%;
+  }
+  
+  .upvideo-title {
+    font-size: 1.8rem;
+  }
+  
+  .upvideo-button {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+  
+  .upvideo-controls {
+    gap: 15px;
+  }
+}
+
+/* Add this to your HTML head for best typography */
+/* <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"> */
