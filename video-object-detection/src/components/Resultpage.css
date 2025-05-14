@@ -6,6 +6,7 @@
   --res-light: rgba(255, 255, 255, 0.9);
   --res-dark: #1a1c20;
   --res-border: rgba(255, 255, 255, 0.1);
+  --res-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 /* Main Container */
@@ -20,6 +21,29 @@
   flex-direction: column;
   align-items: center;
   animation: Res-fadeIn 0.8s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Confetti Animation */
+.Res-confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--res-success);
+  opacity: 0;
+  animation: Res-confetti-fall 5s linear forwards;
+}
+
+@keyframes Res-confetti-fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 /* Title Styles */
@@ -57,9 +81,38 @@
   padding: 2rem;
   margin: 1rem 0;
   border: 1px solid var(--res-border);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--res-shadow);
   transform-style: preserve-3d;
   animation: Res-float 6s ease-in-out infinite alternate;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Progress Bar */
+.Res-progress-container {
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.Res-progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  color: var(--res-light);
+}
+
+.Res-progress-bar {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.Res-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--res-primary), var(--res-success));
+  border-radius: 5px;
+  transition: width 0.5s ease-out;
 }
 
 /* Result Status */
@@ -98,7 +151,7 @@
   background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   border-left: 4px solid var(--res-primary);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: flex;
   justify-content: space-between;
 }
@@ -106,6 +159,7 @@
 .Res-item:hover {
   background: rgba(255, 255, 255, 0.1);
   transform: translateX(10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .Res-item-name {
@@ -119,6 +173,14 @@
 }
 
 /* Button Styles */
+.Res-button-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .Res-button {
   padding: 12px 30px;
   background: var(--res-primary);
@@ -129,21 +191,16 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 1.5rem;
   box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.Res-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: 0.5s;
+.Res-button-pdf {
+  background: linear-gradient(135deg, #FF5F6D, #FFC371);
 }
 
 .Res-button:hover {
@@ -151,12 +208,12 @@
   box-shadow: 0 6px 20px rgba(26, 115, 232, 0.4);
 }
 
-.Res-button:hover::before {
-  left: 100%;
-}
-
 .Res-button:active {
   transform: translateY(1px);
+}
+
+.Res-button-icon {
+  font-size: 1.2rem;
 }
 
 /* Animations */
@@ -193,5 +250,15 @@
   
   .Res-status {
     font-size: 1.2rem;
+  }
+  
+  .Res-button-container {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .Res-button {
+    width: 100%;
+    justify-content: center;
   }
 }
