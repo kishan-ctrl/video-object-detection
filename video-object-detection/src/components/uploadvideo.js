@@ -44,10 +44,17 @@ const UploadVideo = () => {
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
       const predictions = await model.detect(video);
 
+          // Filter predictions to only include 'car'
+    const carPredictions = predictions.filter(pred => pred.class === "car");
+
+    // Clear and redraw
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-      predictions.forEach((pred) => {
+      carPredictions.forEach((pred) => {
         ctx.beginPath();
         ctx.rect(...pred.bbox);
         ctx.lineWidth = 2;
@@ -61,7 +68,7 @@ const UploadVideo = () => {
         );
       });
 
-      setObjectsDetected(predictions);
+      setObjectsDetected(carPredictions);
       requestAnimationFrame(() => detect());
     };
 
